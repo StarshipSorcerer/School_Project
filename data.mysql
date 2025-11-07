@@ -1,0 +1,27 @@
+CREATE DATABASE hotel;
+USE hotel;
+
+CREATE TABLE rooms(
+    room_no INT PRIMARY KEY,
+    room_type VARCHAR(20),
+    price_per_night FLOAT,
+    available BOOLEAN DEFAULT TRUE
+);
+
+CREATE TABLE customers(
+    cust_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50),
+    phone VARCHAR(15),
+    email VARCHAR(50)
+);
+
+CREATE TABLE bookings(
+    booking_id INT AUTO_INCREMENT PRIMARY KEY,
+    cust_id INT,
+    room_no INT,
+    check_in DATE,
+    check_out DATE,
+    total_amount FLOAT,
+    FOREIGN KEY (cust_id) REFERENCES customers(cust_id),
+    FOREIGN KEY (room_no) REFERENCES rooms(room_no)
+);
